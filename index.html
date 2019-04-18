@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>checking palindrom</h1>
+    Enter a word : <input type="text" id="text">
+    <input type="submit" value="check" onclick ="palindrom()">
+    <script>
+        function palindrom(){
+           // var a = prompt("Enter a word to check palindrom")
+            revString = "";
+            impString = document.getElementById("text").value;
+            i = impString.length;
+
+            for(var h=i; h>=0;h--){
+                revString = revString + impString.charAt(h);
+                //document.write(revString+"<br>");
+            }
+            if(impString === revString){
+                alert(impString +" it is palindrom");
+            }
+            else{
+                alert(impString + " it is not a palidnrom")
+            }
+
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>
+    Palindrome Checking
+</h1>
+<input type="text" id = 'txt'>
+<button type="button" onclick="Checking()">Check</button>
+<p id="p1"></p>
+
+
+    
+</body>
+<script>
+    
+        function Checking ()
+      {
+        var val = '';
+    var chk = '';
+    var re ;
+    var lowRegStr ;
+    var reverseStr;
+    var maxp_length = 0
+    var maxp = '';
+         val = document.getElementById('txt').value
+        
+        function palindrome(str) 
+        {
+         re = /[\W_]/g;
+         lowRegStr = str.toLowerCase().replace(re, '');
+         reverseStr = lowRegStr.split('').reverse().join(''); 
+         return reverseStr === lowRegStr;
+      }
+        chk = palindrome(val)
+      // console.log(chk)
+     
+        
+        if(chk == true)
+        {
+           document.getElementById('p1').innerHTML = 'Great '+ '<strong>' + val + '</strong>'+  ' is a Palindrome word'
+        }
+        else
+        { 
+         
+            longestPalind(val)
+            // document.getElementById('p1').innerHTML = 'No '+ val +' is not a Palindrome word'
+           
+        }
+      
+// function isPalindrome(s) {
+//   var rev = s.split("").reverse().join("");
+//   return s == rev;
+// }
+function longestPalind(s){
+	
+  for(var i=0; i < s.length; i++) {
+	var subs = s.substr(i, s.length);
+	  
+	for(var j=subs.length; j>=0; j--) {
+	  var sub_subs = subs.substr(0, j);
+	  if (sub_subs.length <= 1)
+		  continue;
+		
+      //console.log('checking: '+ sub_subs);
+      if (palindrome(sub_subs)) {
+		//console.log('palindrome: '+ sub_subs);
+		if (sub_subs.length > maxp_length) {
+			maxp_length = sub_subs.length;
+			maxp = sub_subs;
+      
+		}
+	  }
+	}
+  }
+	
+  if(maxp.length > 2)
+  {
+    document.getElementById('p1').innerHTML =  '<strong>' + maxp + '</strong>'+' is a Palindrome word in this sentence'
+  }
+  else
+  {
+    document.getElementById('p1').innerHTML = 'No Palindrome'
+  }
+  console.log(maxp_length, maxp);
+  return maxp;
+  
+}
+      }
+ 
+ 
+      // console.log(palindrome('i have eye'))
+        </script>
+</html>
